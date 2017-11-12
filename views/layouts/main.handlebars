@@ -1,22 +1,54 @@
-<!--
-//start up a front-end template to use with handlebars
--->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Handlebars Template</title>
+  <title>MongoNews</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
-  <section>
-  <header>
-    <div class="content">
-     <h1 class="title">Mongo Scraper<h1>
-    </div>
-  </header>
-  {{{body}}}
-</section>
+  <div class="hero-head">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="http://i1308.photobucket.com/albums/s610/maryjanexique/nycc-icon-mongodb_360_zpsjmbag4sd.png" alt="MongoNews">
+          </a>
+          <span class="navbar-burger burger" data-target="navbarMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item is-active" href="#news">
+              News
+            </a>
+            <a class="navbar-item">
+              Saved
+            </a>
+            <a class="navbar-item">
+              Notes
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+{{{body}}}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  </script>
+  <script src="app.js"></script>
 </body>
+
 </html>

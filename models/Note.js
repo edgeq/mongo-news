@@ -12,7 +12,7 @@ var NoteSchema = new Schema({
   body: String
 });
 
-// This creates our model from the above schema, using mongoose's model method
+// This creates our model from the above schema, using mongoose's model method - "Note" then gets pluralized and switched to lower case. see 'notes' in the db
 var Note = mongoose.model("Note", NoteSchema);
 
 // Export the Note model

@@ -24,9 +24,11 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 var exphbs = require("express-handlebars");
+
 app.engine("handlebars", exphbs({
   defaultLayout: "main"
 }));
+
 app.set("view engine", "handlebars");
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
@@ -42,7 +44,12 @@ mongoose.connect("mongodb://localhost/mongonews", {
 //Check that browser is responding.
 //TO-DO: Move routes to another folder.
 app.get('/', function(req, res) {
-  res.render('template');
+  //TODO: grab all articles from bd and render to
+  db.Article.find({})
+    .then(function(dbArticle){
+      res.render('index', {article: dbArticle});
+
+    })
 });
 
 //A GET route for scraping news website
@@ -97,7 +104,7 @@ app.get("/articles", function(req, res) {
     });
 });
 
-// TODO: Route for saving/updating an Article's associated Note
+// TODO: BLOCKED - Route for saving/updating an Article's associated Note (can't pass body and title via Postman or Curl)
 app.post("/articles/:id", function(req, res) {
   console.log(req.body)
   db.Note
@@ -107,13 +114,10 @@ app.post("/articles/:id", function(req, res) {
       // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
       // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
       return db.Article.findOneAndUpdate({
-        // return db.Article.findOneAndUpdate({
         _id: req.params.id
       }, {
         note: dbNote._id
-      }, {
-        new: true
-      });
+      }, {new: true});
     })
     .then(function(dbArticle) {
       // If we were able to successfully update an Article, send it back to the client
@@ -125,7 +129,7 @@ app.post("/articles/:id", function(req, res) {
     });
 });
 
-// TODO: Route for grabbing a specific Article by id, populate it with it's note
+//Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article
