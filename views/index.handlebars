@@ -1,25 +1,7 @@
-<section class="hero is-info is-medium is-bold">
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <h1 class="title">
-        MongoNews Network
-      </h1>
-      <h2 class="subtitle">
-        Scraped stories from news outlets. Each article is scraped from the Internet and saved to a MongoDB database.
-        <ul><br>
-          <li>Headline - the title of the article</li>
-          <li>Summary - a short summary of the article</li>
-          <li>URL - the url to the original article </li>
-        </ul>
-      </h2>
-    </div>
-  </div>
-</section>
-
 <section id="news">
-  <div class="tile is-ancestor">
-    <div class="columns">
-      <div class="column is-multiline">
+  <div class="tile is-vertical is-ancestor">
+    <div class="tile">
+      <article class="column is-multiline">
         {{#each article}}
           <div class="card">
             <div class="card-image has-text-centered">
@@ -31,14 +13,14 @@
                 <p></p>
                 <div class="has-text-centered">
                   <a class="button" href="{{this.link}}" target="_blank">Read</a><span>&nbsp;&nbsp;&nbsp;</span>
-                  <a class="button">Save</a><span>&nbsp;&nbsp;&nbsp;</span>
-                  <a class="button">Notes</a><span>&nbsp;&nbsp;&nbsp;</span>
+
+                  <a class="button" href="/articles/{{this._id}}">Notes</a><span>&nbsp;&nbsp;&nbsp;</span>
                 </div>
               </div>
             </div>
           </div>
         {{/each}}
-      </div>
+      </article>
     </div>
   </div>
 </section>

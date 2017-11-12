@@ -18,8 +18,9 @@ var app = express();
 app.use(logger("dev"));
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({
-  extended: false
+  extended: true
 }));
+app.use(bodyParser.json());
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
@@ -44,7 +45,7 @@ mongoose.connect("mongodb://localhost/mongonews", {
 //Check that browser is responding.
 //TO-DO: Move routes to another folder.
 app.get('/', function(req, res) {
-  //TODO: grab all articles from bd and render to
+  // grab all articles from bd and render to
   db.Article.find({})
     .then(function(dbArticle){
       res.render('index', {article: dbArticle});
@@ -104,7 +105,7 @@ app.get("/articles", function(req, res) {
     });
 });
 
-// TODO: BLOCKED - Route for saving/updating an Article's associated Note (can't pass body and title via Postman or Curl)
+//Route for saving/updating an Article's associated Note (can't pass body and title via Postman or Curl)
 app.post("/articles/:id", function(req, res) {
   console.log(req.body)
   db.Note
@@ -140,7 +141,8 @@ app.get("/articles/:id", function(req, res) {
     .populate("note")
     .then(function(dbArticle) {
       // If we were able to successfully find an Article with the given id, send it back to the client
-      res.json(dbArticle);
+      // res.json(dbArticle);
+      res.render('notes', {article: dbArticle})
     })
     .catch(function(err) {
       // If an error occurred, send it to the client

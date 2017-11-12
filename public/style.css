@@ -1,9 +1,14 @@
-/*
-//TODO: Styling for views
-*/
 html,body {
   background: #EFF3F4;
   font-family: 'Open Sans', serif;
+}
+#notes{
+  display: inline-block;
+  float: left;
+}
+#saved-notes {
+  display: inline-block;
+  float: right;
 }
 .hero-body .container {
   max-width: 700px;
