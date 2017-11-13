@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 
 <body>
@@ -18,9 +18,10 @@
     <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="/">
-            <img src="http://i1308.photobucket.com/albums/s610/maryjanexique/nycc-icon-mongodb_360_zpsjmbag4sd.png" alt="MongoNews">
+          <a class="navbar-item button is-info is-outlined" href="/scrape">Scrape Stories
+
           </a>
+
           <span class="navbar-burger burger" data-target="navbarMenu">
             <span></span>
           <span></span>
@@ -32,17 +33,18 @@
             <a class="navbar-item is-active" href="/#news">
               News
             </a>
-            <a class="navbar-item">
-              Saved
+            <a class="navbar-item" href="/articles">
+              JSON db
             </a>
-            <a class="navbar-item">
+            {{!-- <a class="navbar-item">
               Notes
-            </a>
+            </a> --}}
           </div>
         </div>
       </div>
     </nav>
   </div>
+
   <section class="hero is-info is-medium is-bold">
     <div class="hero-body">
       <div class="container has-text-centered">
@@ -57,10 +59,7 @@
   </section>
 
   {{{body}}}
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-  </script>
-  <script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="/app.js" id="handlebars-appjs" type=""></script>
 </body>
-
 </html>

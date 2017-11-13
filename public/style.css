@@ -2,10 +2,11 @@ html,body {
   background: #EFF3F4;
   font-family: 'Open Sans', serif;
 }
-#notes{
+/*#notes{
   display: inline-block;
   float: left;
-}
+
+}*/
 #saved-notes {
   display: inline-block;
   float: right;
@@ -52,6 +53,15 @@ html,body {
   margin-left: 1rem;
   display: inline-block;
 }
+
+.card-note {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+  top: 0px;
+  margin-top: 2rem;
+  margin-right: 1rem;
+  margin-left: 2rem;
+  display: inline-block;
+}
 .intro {
   padding: 5rem 0;
   text-align: center;
@@ -65,6 +75,51 @@ html,body {
   flex-direction: column;
 }
 
+.articles .content p {
+    line-height: 1.9;
+    margin: 15px 0;
+}
+.author-image {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin-left: -30px;
+    border: 3px solid #ccc;
+    border-radius: 50%;
+}
+.media-center {
+  display: block;
+  margin-bottom: 1rem;
+}
+.media-content {
+  margin-top: 3rem;
+}
+.article, .promo-block {
+  margin-top: 6rem;
+}
+div.column.is-8:first-child {
+  padding-top: 0;
+  margin-top: 0;
+}
+.article-title {
+  font-size: 2rem;
+  font-weight: lighter;
+  line-height: 2;
+}
+.article-subtitle {
+  color: #909AA0;
+  margin-bottom: 3rem;
+}
+.article-body {
+  line-height: 1.4;
+  margin: 0 6rem;
+}
+.promo-block .container {
+  margin: 1rem 5rem;
+}
+
 @media screen and (max-width: 1200px) {
   .card {
     width: 45%;
@@ -74,15 +129,18 @@ html,body {
   .card {
     width: 100%;
     margin-right: 0;
+    margin-left: 0;
   }
 /* Width at 320px and below */
 @media screen and (max-width: 320px) {
   .card {
     width: 100%; !important
+    margin-left: 0;
   }
 
 /* Width at 168px and below */
 @media screen and (max-width: 168px) {
   .card {
     width: 100%; !important
+    margin-left: 0;
   }

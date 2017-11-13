@@ -1,37 +1,78 @@
-<div class="container">
-  <section id="#notes">
-    <div class="columns">
-      <div class="column is-one-third">
-        <div class="card">
-          <div class="card-image has-text-centered">
-            <i class="fa fa-newspaper-o"></i>
-          </div>
-          <div class="card-content">
-            <div class="content">
-              <h3>{{article.title}}</h3>
-              <p>{article.summary}</p>
-              <div class="has-text-centered">
-                <a class="button" href="{{article.link}}" target="_blank">Read</a><span>&nbsp;&nbsp;&nbsp;</span>
-              </div>
+<br>
+<section id="notes">
+  <div class="columns">
+
+    <div class="column">
+      <div class="box cta">
+        <div class="card-image has-text-centered">
+          <i class="fa fa-newspaper-o"></i>
+        </div>
+        <div class="card-content has-text-centered">
+          <div class="content">
+            <h4>{{article.title}}</h4>
+            <p></p>
+            <div class="has-text-centered">
+              <a class="button" href="{{this.link}}" target="_blank">Read</a><span>&nbsp;&nbsp;&nbsp;</span>
+
             </div>
           </div>
         </div>
       </div>
-
-  <div id="saved-notes" class="column is-two-thirds">
-
-      <div class="card article">
-        <div class="card-content">
-          <div class="content article-body">
-            <h4>{{article.note.title}}</h4>
-            <p>{{article.note.body}}</p>
+    </div>
+    <div class="column">
+      <div class="box">
+        <form action="{{article.id}}" method="post" id="noteSubmit">
+          <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+              <input id ="id-input" type="hidden" name="" data-value="{{article.id}}">
+              <input id="title-input" class="input" type="text" placeholder="Title">
+            </div>
+            {{!-- <p class="help">Add a note</p> --}}
           </div>
+          <div class="field">
+            <label class="label">Body</label>
+            <div class="control">
+              <textarea id="body-input" class="textarea" placeholder="Body"></textarea>
+            </div>
+          </div>
+          <div class="control">
+            <button class="button is-info" id="savenote">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="columns">
+  <div class="column is-two-thirds is-offset-2">
+    <!-- START ARTICLE -->
+    <div class="box cta">
+      <div class="card-content">
+        <div class="content article-body">
+          {{!-- {{#each article.note}} --}}
+          {{#if article.note}}
+          {{!-- {{#each this.note}} --}}
+            <h1 id="hbr-note-title">{{article.note.title}}</h1>
+            <p id="hbr-note-body"> {{article.note.body}}
+          {{else}}
+            <h1>Add a note</h1>
+
+            {{!-- {{/each}} --}}
+          {{/if}}
+
+          </p>
         </div>
       </div>
-
     </div>
-  </section>
-  <!-- END ARTICLE -->
+    <br>
+    <!-- END ARTICLE -->
 
+  </div>
 
 </div>
+
+<script src="exphbs.js" id="handlebars-appjs" type="text/x-handlebars-template"></script>

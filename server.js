@@ -21,15 +21,13 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
-
 var exphbs = require("express-handlebars");
-
 app.engine("handlebars", exphbs({
   defaultLayout: "main"
 }));
-
 app.set("view engine", "handlebars");
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
@@ -47,8 +45,10 @@ mongoose.connect("mongodb://localhost/mongonews", {
 app.get('/', function(req, res) {
   // grab all articles from bd and render to
   db.Article.find({})
-    .then(function(dbArticle){
-      res.render('index', {article: dbArticle});
+    .then(function(dbArticle) {
+      res.render('index', {
+        article: dbArticle
+      });
 
     })
 });
@@ -83,10 +83,14 @@ app.get("/scrape", function(req, res) {
           res.json(err)
         })
 
+
     });
     // Log the results once you've looped through each of the elements found with cheerio
     console.log(results);
-    res.send('scraped')
+    setTimeout( function(){
+        res.redirect('/')
+    }, 1000)
+
   })
 })
 
@@ -95,6 +99,7 @@ app.get("/articles", function(req, res) {
   // Grab every document in the Articles collection
   db.Article
     .find({})
+    .populate("note")
     .then(function(dbArticle) {
       // If we were able to successfully find Articles, send them back to the client
       res.json(dbArticle);
@@ -118,7 +123,9 @@ app.post("/articles/:id", function(req, res) {
         _id: req.params.id
       }, {
         note: dbNote._id
-      }, {new: true});
+      }, {
+        new: true
+      });
     })
     .then(function(dbArticle) {
       // If we were able to successfully update an Article, send it back to the client
@@ -142,7 +149,9 @@ app.get("/articles/:id", function(req, res) {
     .then(function(dbArticle) {
       // If we were able to successfully find an Article with the given id, send it back to the client
       // res.json(dbArticle);
-      res.render('notes', {article: dbArticle})
+      res.render('notes', {
+        article: dbArticle
+      })
     })
     .catch(function(err) {
       // If an error occurred, send it to the client
