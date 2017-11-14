@@ -33,10 +33,21 @@ app.set("view engine", "handlebars");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/mongonews", {
-  useMongoClient: true
-});
+var databaseUri = "mongodb://localhost/mongonews";
+  if(process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI);
+  } else {
+    mongoose.connect(databaseUri);
+  }
 
+var mongoDb = mongoose.connection
+  mongoDb.on('error', function(err){
+    console.log('Mongoose error: ', err)
+  });
+
+  mongoDb.once('open', function(){
+    console.log('Mongoose connection successful')
+  })
 // Routes
 // var routes = require("./routes/routes.js");
 // app.use('/', routes)
