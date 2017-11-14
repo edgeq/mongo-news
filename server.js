@@ -65,6 +65,10 @@ app.get("/scrape", function(req, res) {
       // In the currently selected element, look at its child elements (i.e., its a-tags),
       // then save the values for any "href" attributes that the child elements may have
       var link = $(element).children().attr("href");
+
+      if (link.startsWith('\/r')) {
+        link = "https:///www.reddit.com"+link
+      };
       // Save these results in an object that we'll push into the results array we defined earlier
       results.title = title;
       results.link = link;
